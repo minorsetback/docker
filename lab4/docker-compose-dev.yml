@@ -1,0 +1,27 @@
+version: "3"
+services:
+  api:
+    build:
+      context: ./api
+    command: npm run dev
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - "80:8080"
+    depends_on:
+      - api_db
+    environment:
+      PORT: 8080
+      HOST: "0.0.0.0"
+      MONGO_URL: "mongodb://api_db:27017/api"
+      NODE_ENV: "development"
+  api_db:
+    image: mongo
+    volumes:
+      - mongodb_api:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodb_api:
+
+  # Записуйте інші сервіси, які можуть бути в вашому середовищі розробки
