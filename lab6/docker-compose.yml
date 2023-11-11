@@ -28,7 +28,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     command: serve -s build -l 3000
     depends_on:
       - api
